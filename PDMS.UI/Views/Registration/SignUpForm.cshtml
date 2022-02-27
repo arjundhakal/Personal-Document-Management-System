@@ -1,0 +1,61 @@
+﻿@model PDMS.UI.Models.Registration
+
+  <h2>Register for your Personal Document Management System Account: </h2>
+  <div class="flex h-screen">
+    <div class="m-auto">
+        @using (Html.BeginForm("SignUp", "Registration", FormMethod.Post, new { @class = "bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4" }))
+        {
+            <div class="container">
+                <br>
+                <p><b>Please enter your Details:</b></p>
+                <div class="row">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-lg-2"  })
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control col-lg-3", placeholder = "First name" })
+                </div>
+                <div class="row">
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+                <br>
+                <div class="row"> 
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-lg-2" })
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control col-lg-3", placeholder = "Last name" })
+                </div>
+                <div class="row">
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = " text-danger" })
+                </div>
+                <br>
+                <div class="row"> 
+                    @Html.LabelFor(m => m.EmailId, new { @class = "col-lg-2"})
+                    @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control col-lg-3", placeholder = "Email id" })
+                </div>
+                <div class="row">
+                    @Html.ValidationMessageFor(m => m.EmailId, "", new { @class = " text-danger" })
+                </div>
+                <br>
+                <div class="row"> 
+                    @Html.LabelFor(m => m.Password, new { @class = "col-lg-2" })
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control col-lg-3", placeholder = "Enter Password"})
+                </div>
+                <div class="row">
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = " text-danger" })
+                </div>
+                <br>
+                <div class="row"> 
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-lg-2" })
+                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control col-lg-3", placeholder = "Confirm Password" })
+                </div> 
+                <div class="row">
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+                <br> 
+                 <button class="btn btn-primary" type="submit">Sign Up</button>
+                <br> 
+                <a class="btn-link" href="@Url.Action("Index", "Login")">Already Have An Account? Click Here</a> 
+                 <br><br>    
+            </div>              
+        }
+        <p class="text-center text-gray-500 text-xs">
+            &copy;@DateTime.Now.Year TMMJ Consulting Pty Ltd. All rights reserved.
+        </p>
+    </div>
+  </div>

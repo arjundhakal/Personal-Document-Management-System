@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Session will expire in 10 seconds.</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Want to Continue?</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-success" data-dismiss="modal"">Yes</a>
+          <a class="btn btn-danger" href="@Url.Action("Logout", "Login")">No</a>
+        </div>
+      </div>   
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+    $(function() {
+        var loggedInUser = '@HttpContextAccessor.HttpContext.Session.GetString("username")';
+        var sessionTimeOut = '@HttpContextAccessor.HttpContext.Session.GetString("sessionTimeOut")';
+        var timeout = (parseInt(sessionTimeOut)*60*1000 - 10000);
+        if (loggedInUser !== '') 
+        {
+         $(document).bind("idle.idleTimer", function() {
+            $('#myModal').modal('show');
+            window.setTimeout(function() {
+                window.location.href="@Url.Action("Logout", "Login")";
+            }, 10000);
+         });
+         $.idleTimer(timeout);
+        }
+    });
+</Script>

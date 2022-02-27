@@ -1,0 +1,23 @@
+﻿@model PDMS.UI.Models.Document
+
+@using (Html.BeginForm("DocumentCreate", "Document", FormMethod.Post, new { enctype="multipart/form-data"}))
+{
+    <div class="container">
+        <br>
+        <p><b>Please upload your document:</b></p>
+        <div class="row">
+            @Html.LabelFor(m => m.DocumentFileName, new { @class = "col-lg-2" })
+            @Html.TextBoxFor(m => m.DocumentFileName, new { @class = "form-control col-lg-3", placeholder = "Document Filename"})
+        </div>
+        <div class="row">
+            @Html.ValidationMessageFor(m => m.DocumentFileName, "", new { @class = "text-danger" })
+        </div>
+        <br>
+        <div class="row">
+            @Html.LabelFor(m => m.FormFile, new { @class = "col-lg-2" })
+            @Html.TextBoxFor(m => m.FormFile, "", new {@class = "col-lg-4", type= "file", @required = true}) <br />
+        </div>
+        <br>
+        <button id="uploadFile" class="btn btn-primary" type="submit">Upload</button>
+    </div>              
+}

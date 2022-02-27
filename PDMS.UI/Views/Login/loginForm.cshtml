@@ -1,0 +1,75 @@
+﻿@model PDMS.UI.Models.LoginModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "User Login";
+}
+
+ <h2>User login form: </h2>
+ @if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning alert-dismissible" style="margin-top:20px">
+        <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+        @ViewBag.Message
+    </div>
+}
+  <div class="flex h-screen">
+    <div class="m-auto">
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4" }))
+        {
+            <div class="container">
+                <br>
+                <p><b>Please enter your Login Details:</b></p>
+                <div class="row"> 
+                    @Html.LabelFor(m => m.EmailId, new { @class = "col-lg-2"})
+                    @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control col-lg-3", placeholder = "Email id" })
+                </div>
+                <div class="row">
+                    @Html.ValidationMessageFor(m => m.EmailId, "", new { @class = "text-danger" })
+                </div>
+                <br> 
+                <div class="row"> 
+                    @Html.LabelFor(m => m.Password, new { @class = "col-lg-2" })  
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control col-lg-3", placeholder = "Enter Password"})
+                </div>
+                <div class="row">
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <a href="@Url.Action("ForgotPassword", "ResetPassword")" button class="btn btn-warning">Forgot password?</a>
+                <br> <br>
+                <button class="btn btn-primary mr-1 text-white inline-block shadow-lg bg-blue-200" type="submit"  id="submitButton" disabled="disabled">Login</button>
+                <a href="@Url.Action("SignUp", "Registration")" button class="btn btn-success" >SignUp Now</a> 
+                 <br><br>   
+            </div>          
+            <p>Problem Logging in! Please contact us.<br>
+            <b>Email: </b>hello@tmmjconsulting.com.au<br>
+            <b>Phone: </b>+61 (03) 5309 0469 </p>
+        }
+    </div>
+  </div>
+
+
+<script>
+    $(document).ready(function() {
+        $(document).mousemove(function(event) {
+            EnableLoginFunction();
+        });
+        $("#EmailId, #Password").keyup(function () {
+            EnableLoginFunction();
+        });
+    });
+
+    function EnableLoginFunction(){    
+        let isEnabled = $("#EmailId").val().length > 0 && $("#Password").val().length > 0;
+        if (isEnabled){
+            $("#submitButton").removeAttr("disabled");
+            $("#submitButton").removeClass("bg-blue-200");
+            $("#submitButton").addClass("bg-blue-500");
+        }
+        else {
+            $('#submitButton').attr('disabled', 'disabled' );
+            $("#submitButton").removeClass("bg-blue-500");
+            $("#submitButton").addClass("bg-blue-200");
+        }
+    }
+</script>

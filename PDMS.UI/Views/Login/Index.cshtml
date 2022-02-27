@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="text-center">
+    <p> Hey! @ViewBag.Username</p>
+</div>
+
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item active"><a data-toggle="tab" class="nav-link" href="#home">Home</a></li>
+    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#menu1">Create New Document</a></li>
+    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#menu2">Create New Document Type</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <a href="#" class="btn btn-primary" role="button">View all Documents</A>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Create New Document</h3>
+      <p> </p>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Create New Document Type</h3>
+      <p> </p>
+    </div>
+  </div>
+</div>

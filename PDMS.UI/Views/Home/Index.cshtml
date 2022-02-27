@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome </h1> <h3><b>@ViewBag.Username !</b></h3>
+</div>
+
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><a data-toggle="tab" class="nav-link active" href="#home">Home</a></li>
+    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#menu1">Create a new document</a></li>
+    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#menu2">Create New Document Type</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane container active">
+       <h3>View All Documents</h3>
+      <a href=@Url.Action("DocumentView", "Document") class="btn btn-primary" role="button">View documents</a>     
+    </div>
+    <div id="menu1" class="tab-pane container fade">
+      <h3>Create New Document</h3>
+        <div id ="partialView">
+            <a href=@Url.Action("DocumentCreate", "Document") class="btn btn-primary" role="button">Create new Document</a>
+        </div>
+     </div>
+    <div id="menu2" class="tab-pane container fade">
+      <h3>Create New Document Type</h3>
+      <p> </p>
+    </div>
+  </div>
+</div>
+
+
